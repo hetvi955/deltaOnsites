@@ -3,54 +3,47 @@
 <body>
     <link rel="stylesheet" href="style.css">
     <div id="img"></div>
-    <p id="demo"></p>
+    <p id='inf'>enter the characters of the word oreo to get your oreo!</p>
     <button id='btn' onclick="getoreo() ">get my equivalent oreo!</button>
 
 <p id="demo"></p>
 
 <script>
-    function getoreo(str) {
+     function getoreo(str) {
         var text;
         var str = prompt('enter string!');
-        var l=Math.floor(k);
-        var k=str.length/2;
-        var n=str.indexOf('&');
-
+    
 
             if(str.length!=0){
-                if(str[0]==str[str.length-1]){
-                    
-
-                    
+                
                     for (i=0;i=str.length-1;i++){
-                        if (str[i]==str[str.length-1-i]){
-                            image='<img src="oreos/creamonly.jpg"></img>';
-                            text= 'Your oreo only has the cream !'
-                            break;
+                        
 
-                        }else if(str[i+1]!=str[str.length-1-i]) {
-                            image='<img src="oreos/oreofull.jpg"></img>';
-                            text= ' Your oreo is complete!'
-                            break;
-                            
-                        }else if(str[i]==str[i+3]){
-                            image='<img src="oreos/biscreambis.jpg"></img>';
-                            text= ' Your oreo is a gaint!'
-                            break;
-
-                        }else{
+                            if(str!='oreo' && str!='oreoreo'){
+                                image='<img src="oreos/onlybiscuits.jpg"></img>';
+                                text= 'Your oreo has no cream :('
+                                break;
+                            }else if(str=='oreo'){
+                                image='<img src="oreos/oreofull.jpg"></img>';
+                                text= ' Your oreo is complete!'
+                                break;
+                            }else if(str=='oreoreo'){
+                                image='<img src="oreos/double.jpg"></img>';
+                                text= ' double the fun!'
+                                break;
+                            }
+                            else{
                             image='<img src="oreos/creamss.jpg"></img>';
                             text= ' looks like you love cream!'
                             break;
 
                         }
-                    }
-                }else if(str[0]!=str[str.length-1]){
-                    for (i=0; i=str.length-3;i++){
-                        if (str[i]==str[i+2]){
-                            image='<img src="oreos/oreoreore.jpg"></img>';
-                            text= 'here is your oreo!'
-                            break;
+                        }if(str[0]!=str[str.length-1]){
+                            for (i=0; i=str.length-3;i++){
+                                if (str[i]==str[i+2]){
+                                    image='<img src="oreos/creamonly.jpg"></img>';
+                                    text= 'Your oreo only has the cream !'
+                                    break;
                         }
                     }
                 }
@@ -65,10 +58,7 @@
             document.getElementById('demo').innerHTML=text;
             document.getElementById('img').innerHTML=image;
                 
-    }     
-
-
-
+    };   
 
 </script>
 
