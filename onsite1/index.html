@@ -3,62 +3,91 @@
 <body>
     <link rel="stylesheet" href="style.css">
     <div id="img"></div>
-    <p id='inf'>enter the characters of the word oreo to get your oreo!</p>
-    <button id='btn' onclick="getoreo() ">get my equivalent oreo!</button>
+    
+        
+        <form id="form">
+            <label for="alloreos" id='inf'>Enter the oreo String Here</label>
+                  <input id="alloreos" type="text" name="alloreos" value="">
+                  <button id="btn">Generate my oreo!</button>
+          </form>
+        <div id='oreos'></div>
 
+      
 <p id="demo"></p>
 
 <script>
-     function getoreo(str) {
-        var text;
-        var str = prompt('enter string!');
+
     
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
 
-            if(str.length!=0){
-                
-                    for (i=0;i=str.length-1;i++){
-                        
+  var str = document.getElementById("alloreos").value;
+  var alloreos = [];
+  var count = 0;
+  
+  if (str == "") {
+    count = 1;
+  }
+  for (var i = 0; i < str.length; i++) {
+    if (!(str[i] == "o" || "r"  ||  "e" || "&")) {
+      count = 1;
+      break;
+      
+    } else if (str[i] == "o") {
+      alloreos.push("o");
+    } else if (str[i] == "&") {
+      alloreos.push("&");
 
-                            if(str!='oreo' && str!='oreoreo'){
-                                image='<img src="oreos/onlybiscuits.jpg"></img>';
-                                text= 'Your oreo has no cream :('
-                                break;
-                            }else if(str=='oreo'){
-                                image='<img src="oreos/oreofull.jpg"></img>';
-                                text= ' Your oreo is complete!'
-                                break;
-                            }else if(str=='oreoreo'){
-                                image='<img src="oreos/double.jpg"></img>';
-                                text= ' double the fun!'
-                                break;
-                            }
-                            else{
-                            image='<img src="oreos/creamss.jpg"></img>';
-                            text= ' looks like you love cream!'
-                            break;
+    } else if (str[i] == "r" && str[i + 1] == "e") {
+      alloreos.push("re");
+      i++;
+    } else {
+      count = 1;
+      break;
+    }
+  }
+  if (!count) {
+    getoreo(alloreos);
 
-                        }
-                        }if(str[0]!=str[str.length-1]){
-                            for (i=0; i=str.length-3;i++){
-                                if (str[i]==str[i+2]){
-                                    image='<img src="oreos/creamonly.jpg"></img>';
-                                    text= 'Your oreo only has the cream !'
-                                    break;
-                        }
-                    }
-                }
+  } else {
+    alert("Not a valid input :(");
+  }
+});
 
-                
-                    
-            }else if(str.length==0){
-                
-                    alert('please enter something!')
-                };
+function getoreo(str) {
+        var neworeo = document.createElement("div");
+        var oreos = document.createElement("div");
+        var count = 0;
+        
+        
+        imagetop='<img src="oreos/topside.jpg" class="frame"></img>';
+        imagebot= '<img src="oreos/onlybiscuits.jpg" class="frame" ></img>';
+        imagecrm='<img src="oreos/creamonly.jpg" class="frame" ></img>';
+        nocream='<img src="oreos/nocream.jpg"  class="frame"></img>'
 
-            document.getElementById('demo').innerHTML=text;
-            document.getElementById('img').innerHTML=image;
-                
-    };   
+        for (var i = 0; i < str.length; i++) {
+            if (i == str.length - 1 && str[i] == "o") {
+                oreos.innerHTML += imagebot;
+
+        } else if (str[i] == "o") {
+             if (count % 2 == 0) {
+               oreos.innerHTML += imagetop;
+      } else {
+        oreos.innerHTML += imagebot;
+      }
+      count++;
+    } else if (str[i] == "re") {
+        
+        oreos.innerHTML += imagecrm;
+    } else if (str[i] == "&") {
+        oreos.innerHTML +=nocream ;
+    }
+  }
+  neworeo.appendChild(oreos);
+
+  document.getElementById('demo').innerHTML= 'your oreo!';
+  document.getElementById('oreos').appendChild(neworeo);
+}
 
 </script>
 
