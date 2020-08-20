@@ -3,6 +3,19 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.frame{
+    align-self: center;
+    height: 30px;     
+    width: 160px;
+    padding-top:30px;
+    white-space: nowrap;
+
+}
+#alloreos{
+    padding:20px;
+    margin:20px;
+}
+
 #demo{
     margin-top: 50px;
     color:rgb(255, 255, 255);
